@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mc Ryan Sp</title>
+    <link rel="stylesheet" href="musica.css">
+</head>
+
+<body>
+   	<input type="checkbox" id="bt_menu">
+    <label for="bt_menu">&#9776;</label>
+    <nav class="menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="index.html">Categorias</a>
+			<ul>
+				<li><a href="sertanejo.html">Sertanejo</a></li>
+				<li><a href="pop.html">Pop</a></li>
+				<li><a href="rock.html">Rock</a></li>
+                <li><a href="mpb.html">MPB</a></li>
+                <li><a href="trap.html">Trap</a></li>
+                <li><a href="pagode.html">Pagode</a></li>
+                <li><a href="reagge.html">Reagge</a></li>
+                <li><a href="eletronica.html">Eletrônica</a></li>
+			</ul>
+		  </li>
+          <li><a href="#">Contato</a></li>
+		</ul>
+	</nav>
+
+  <main class="content">
+    <h1>Mc Ryan Sp</h1>
+    <h3>Escute as melhores músicas!</h3>
+  </main>
+
+         <main class="content">
+  <div class="player-container">
+    <div class="player-left">
+      <img src="mcryansp.jpg" alt="Imagem da música" id="cover" class="cover-img">
+      <p id="music-title"><strong>Mc Ryan Sp</strong></p>
+
+      <div class="controls">
+        <button onclick="prevMusic()">⏮</button>
+        <button onclick="playMusic()">▶</button>
+        <button onclick="pauseMusic()">⏸</button>
+        <button onclick="nextMusic()">⏭</button>
+      </div>
+
+      <input type="range" id="progress" value="0" max="100">
+      <div class="time-info">
+        <span id="current-time">0:00</span>
+        <span id="duration">5:00</span>
+      </div>
+    </div>
+
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul id="playlist">
+        <li onclick="loadMusic(0)">
+          <strong>Pernoite 2</strong><br>
+          <small>Pernoite 2</small>
+          <span>4:40</span>
+        </li>
+        <li onclick="loadMusic(1)">
+          <strong>Bem Sucedido de Marte</strong><br>
+          <small>Bem Sucedido de Marte</small>
+          <span>3:57</span>
+        </li>
+        <li onclick="loadMusic(2)">
+          <strong>BMW Pretão</strong><br>
+          <small>BMW Pretão</small>
+          <span>4:19</span>
+        </li>
+        <li onclick="loadMusic(3)">
+          <strong>Rumo Ao Milênio</strong><br>
+          <small>Rumo Ao Milênio</small>
+          <span>4:52</span>
+        </li>
+        <li onclick="loadMusic(4)">
+          <strong>Vou Virar Uma Lenda</strong><br>
+          <small>Vou Virar Uma Lenda</small>
+          <span>3:29</span>
+        </li>
+        <li onclick="loadMusic(5)">
+          <strong>Tubarão Gigante</strong><br>
+          <small>Tubarão Gigante</small>
+          <span>4:01</span>
+        </li>
+          <li onclick="loadMusic(6)">
+          <strong>Melhor Vibe</strong><br>
+          <small>Melhor Vibe</small>
+          <span>5:51</span>
+        </li>
+          <li onclick="loadMusic(7)">
+          <strong>Judas</strong><br>
+          <small>Judas</small>
+          <span>2:32s</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <audio id="audio" src="musicastrap/MC Ryan SP - Pernoite 2 (GR6 Explode) DJ Pedro.mp3"></audio>
+  <audio id="audio" src="musicastrap/MC Ryan SP e MC Brinquedo - Bem Sucedido de Marte (kondzilla.com).mp3"></audio>
+  <audio id="audio" src="musicastrap/MC Ryan SP - BMW Pretão (GR6 Explode) DJ Pedro.mp3"></audio>
+  <audio id="audio" src="musicastrap/MC Ryan SP - Rumo Ao Milênio (GR6 Explode) DJ Pedro.mp3"></audio>
+  <audio id="audio" src="musicastrap/MC Ryan SP - Vou Virar Uma Lenda (GR6 Filmes) DJ Oreia.mp3"></audio>
+  <audio id="audio" src="musicastrap/MC Ryan SP - Tubarão Gigante (kondzilla.com).mp3"></audio>
+  <audio id="audio" src="musicastrap/MC Ryan SP, Filipe Ret,  Caio Luccas e Chefin - Melhor Vibe (Dallass e Rocco) Video Clipe Oficial.mp3"></audio>
+  <audio id="audio" src="musicastrap/MC Ryan SP - Judas (Video Clipe Oficial) DJ Boy.mp3"></audio>
+</main>
+
+<script>
+const musicList = [
+  {
+    title: "Pernoite 2",
+    file: "musicastrap/MC Ryan SP - Pernoite 2 (GR6 Explode) DJ Pedro.mp3",
+    duration: "4:40"
+  },
+  {
+    title: "Bem Sucedido de Marte",
+    file: "musicastrap/MC Ryan SP e MC Brinquedo - Bem Sucedido de Marte (kondzilla.com).mp3",
+    duration: "3:57"
+  },
+  {
+    title: "BMW Pretão",
+    file: "musicastrap/MC Ryan SP - BMW Pretão (GR6 Explode) DJ Pedro.mp3",
+    duration: "4:19"
+  },
+  {
+    title: "Rumo Ao Milênio",
+    file: "musicastrap/MC Ryan SP - Rumo Ao Milênio (GR6 Explode) DJ Pedro.mp3",
+    duration: "4:52"
+  },
+  {
+    title: "Vou Virar Uma Lenda",
+    file: "musicastrap/MC Ryan SP - Vou Virar Uma Lenda (GR6 Filmes) DJ Oreia.mp3",
+    duration: "3:29"
+  },
+  {
+    title: "Tubarão Gigante",
+    file: "musicastrap/MC Ryan SP - Tubarão Gigante (kondzilla.com).mp3",
+    duration: "4:01"
+  },
+  {
+    title: "Melhor Vibe",
+    file: "musicastrap/MC Ryan SP, Filipe Ret,  Caio Luccas e Chefin - Melhor Vibe (Dallass e Rocco) Video Clipe Oficial.mp3",
+    duration: "5:51"
+  },
+  {
+    title: "Judas",
+    file: "musicastrap/MC Ryan SP - Judas (Video Clipe Oficial) DJ Boy.mp3",
+    duration: "2:32"
+  }
+];
+
+let currentMusic = 0;
+const audio = document.getElementById("audio");
+const title = document.getElementById("music-title");
+const progress = document.getElementById("progress");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+
+// Carrega a música pelo índice
+function loadMusic(index) {
+  currentMusic = index;
+  audio.src = musicList[index].file;
+  title.innerHTML = `<strong>${musicList[index].title}</strong>`;
+  durationEl.textContent = musicList[index].duration;
+  playMusic();
+}
+
+// Botões
+function playMusic() {
+  audio.play();
+}
+function pauseMusic() {
+  audio.pause();
+}
+function prevMusic() {
+  currentMusic = (currentMusic - 1 + musicList.length) % musicList.length;
+  loadMusic(currentMusic);
+}
+function nextMusic() {
+  currentMusic = (currentMusic + 1) % musicList.length;
+  loadMusic(currentMusic);
+}
+
+// Atualiza barra de progresso e tempo
+audio.addEventListener("timeupdate", () => {
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progress.value = progressPercent || 0;
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+
+// Permite clicar na barra de progresso
+progress.addEventListener("input", () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+});
+
+// Formata tempo mm:ss
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
+// Iniciar com a primeira música carregada
+window.onload = () => {
+  loadMusic(0);
+};
+</script>
+    
+</body>
+</html>

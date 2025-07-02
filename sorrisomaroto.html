@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorriso Maroto</title>
+  <link rel="stylesheet" href="musica.css">
+</head>
+<body>
+  <input type="checkbox" id="bt_menu">
+  <label for="bt_menu">&#9776;</label>
+  <nav class="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html">Categorias</a>
+        <ul>
+          <li><a href="sertanejo.html">Sertanejo</a></li>
+          <li><a href="pop.html">Pop</a></li>
+          <li><a href="rock.html">Rock</a></li>
+          <li><a href="mpb.html">MPB</a></li>
+          <li><a href="trap.html">Trap</a></li>
+          <li><a href="pagode.html">Pagode</a></li>
+          <li><a href="reagge.html">Reagge</a></li>
+          <li><a href="eletronica.html">Eletrônica</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <h1>Sorriso Maroto</h1>
+    <h3>Escute as melhores músicas!</h3>
+
+    <div class="player-container">
+      <div class="player-left">
+        <img src="sorrisomaroto.jpg" alt="Imagem da música" id="cover" class="cover-img">
+        <p id="music-title"><strong>Sorriso Maroto</strong></p>
+
+        <div class="controls">
+          <button onclick="prevMusic()">⏮</button>
+          <button onclick="playMusic()">▶</button>
+          <button onclick="pauseMusic()">⏸</button>
+          <button onclick="nextMusic()">⏭</button>
+        </div>
+
+        <input type="range" id="progress" value="0" max="100">
+        <div class="time-info">
+          <span id="current-time">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <div class="playlist">
+        <h2>Playlist</h2>
+        <ul id="playlist">
+          <li onclick="loadMusic(0)">
+            <strong>Fica Com Deus</strong><br>
+            <small>Sorriso Maroto</small>
+            <span>3:57</span>
+          </li>
+          <li onclick="loadMusic(1)">
+            <strong>Não Tem Perdão (Ao Vivo)</strong><br>
+            <small>Sorriso Maroto</small>
+            <span>3:44</span>
+          </li>
+          <li onclick="loadMusic(2)">
+            <strong>A Primeira Namorada (Ao Vivo)</strong><br>
+            <small>Sorriso Maroto</small>
+            <span>3:40</span>
+          </li>
+          <li onclick="loadMusic(3)">
+            <strong>Lua de Mel (DVD Sorriso Eu Gosto)</strong><br>
+            <small>Sorriso Maroto</small>
+            <span>3:29</span>
+          </li>
+          <li onclick="loadMusic(4)">
+            <strong>Me Olha Nos Olhos</strong><br>
+            <small>Sorriso Maroto</small>
+            <span>3:23</span>
+          </li>
+          <li onclick="loadMusic(5)">
+            <strong>Amanhã (Ao Vivo)</strong><br>
+            <small>Sorriso Maroto</small>
+            <span>3:57</span>
+          </li>
+          <li onclick="loadMusic(6)">
+            <strong>50 Vezes (Ao Vivo)</strong><br>
+            <small>Sorriso Maroto, Dilsinho</small>
+            <span>2:58</span>
+          </li>
+          <li onclick="loadMusic(7)">
+            <strong>Ela - Eu Gosto No Pagode</strong><br>
+            <small>Sorriso Maroto, Ferrugem</small>
+            <span>3:17</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <audio id="audio" src=""></audio>
+  </main>
+
+  <script>
+    const musicList = [
+      {
+        title: "Fica Com Deus",
+        file: "musicaspagode/Sorriso Maroto - Fica Com Deus.mp3",
+        duration: "3:57"
+      },
+      {
+        title: "Não Tem Perdão (Ao Vivo)",
+        file: "musicaspagode/Sorriso Maroto - Não Tem Perdão (Ao Vivo).mp3",
+        duration: "3:44"
+      },
+      {
+        title: "A Primeira Namorada (Ao Vivo)",
+        file: "musicaspagode/Sorriso Maroto - A Primeira Namorada (Ao Vivo).mp3",
+        duration: "3:40"
+      },
+      {
+        title: "Lua de Mel (DVD Sorriso Eu Gosto)",
+        file: "musicaspagode/Sorriso Maroto - Lua de Mel (DVD Sorriso Eu Gosto).mp3",
+        duration: "3:29"
+      },
+      {
+        title: "Me Olha Nos Olhos",
+        file: "musicaspagode/Sorriso Maroto - Me Olha Nos Olhos.mp3",
+        duration: "3:23"
+      },
+      {
+        title: "Amanhã (Ao Vivo)",
+        file: "musicaspagode/Sorriso Maroto  - Amanhã (ao vivo).mp3",
+        duration: "3:57"
+      },
+      {
+        title: "50 Vezes (Ao Vivo)",
+        file: "musicaspagode/Sorriso Maroto, Dilsinho - 50 Vezes (Ao Vivo) [Clipe Oficial].mp3",
+        duration: "2:58"
+      },
+      {
+        title: "Ela - Eu Gosto No Pagode",
+        file: "musicaspagode/Sorriso Maroto - Ela - Sorriso Maroto, Ferrugem (Sorriso Eu Gosto No Pagode).mp3",
+        duration: "3:17"
+      }
+    ];
+
+    let currentMusic = 0;
+    const audio = document.getElementById("audio");
+    const title = document.getElementById("music-title");
+    const progress = document.getElementById("progress");
+    const currentTimeEl = document.getElementById("current-time");
+    const durationEl = document.getElementById("duration");
+
+    function loadMusic(index) {
+      currentMusic = index;
+      audio.src = musicList[index].file;
+      title.innerHTML = `<strong>${musicList[index].title}</strong>`;
+      durationEl.textContent = musicList[index].duration;
+      playMusic();
+    }
+
+    function playMusic() {
+      audio.play();
+    }
+
+    function pauseMusic() {
+      audio.pause();
+    }
+
+    function prevMusic() {
+      currentMusic = (currentMusic - 1 + musicList.length) % musicList.length;
+      loadMusic(currentMusic);
+    }
+
+    function nextMusic() {
+      currentMusic = (currentMusic + 1) % musicList.length;
+      loadMusic(currentMusic);
+    }
+
+    audio.addEventListener("timeupdate", () => {
+      const progressPercent = (audio.currentTime / audio.duration) * 100;
+      progress.value = progressPercent || 0;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    progress.addEventListener("input", () => {
+      audio.currentTime = (progress.value / 100) * audio.duration;
+    });
+
+    function formatTime(time) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    }
+
+    window.onload = () => {
+      loadMusic(0);
+    };
+  </script>
+</body>
+</html>

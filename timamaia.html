@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Maia</title>
+    <link rel="stylesheet" href="musica.css">
+</head>
+
+<body>
+   	<input type="checkbox" id="bt_menu">
+    <label for="bt_menu">&#9776;</label>
+    <nav class="menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="index.html">Categorias</a>
+			<ul>
+				<li><a href="sertanejo.html">Sertanejo</a></li>
+				<li><a href="pop.html">Pop</a></li>
+				<li><a href="rock.html">Rock</a></li>
+                <li><a href="mpb.html">MPB</a></li>
+                <li><a href="trap.html">Trap</a></li>
+                <li><a href="pagode.html">Pagode</a></li>
+                <li><a href="reagge.html">Reagge</a></li>
+                <li><a href="eletronica.html">Eletrônica</a></li>
+			</ul>
+		  </li>
+          <li><a href="#">Contato</a></li>
+		</ul>
+	</nav>
+
+  <main class="content">
+    <h1>Tim Maia</h1>
+    <h3>Escute as melhores músicas!</h3>
+  </main>
+
+         <main class="content">
+  <div class="player-container">
+    <div class="player-left">
+      <img src="timmaia.jpeg" alt="Imagem da música" id="cover" class="cover-img">
+      <p id="music-title"><strong>Tim Maia</strong></p>
+
+      <div class="controls">
+        <button onclick="prevMusic()">⏮</button>
+        <button onclick="playMusic()">▶</button>
+        <button onclick="pauseMusic()">⏸</button>
+        <button onclick="nextMusic()">⏭</button>
+      </div>
+
+      <input type="range" id="progress" value="0" max="100">
+      <div class="time-info">
+        <span id="current-time">0:00</span>
+        <span id="duration">5:00</span>
+      </div>
+    </div>
+
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul id="playlist">
+        <li onclick="loadMusic(0)">
+          <strong>Azul Da Cor Do Mar</strong><br>
+          <small>Tim Maia</small>
+          <span>3:18</span>
+        </li>
+        <li onclick="loadMusic(1)">
+          <strong>Me Dê Motivo</strong><br>
+          <small>O Descobridor dos Sete Mares</small>
+          <span>5:35</span>
+        </li>
+        <li onclick="loadMusic(2)">
+          <strong>O Descobridor Dos Sete Mares</strong><br>
+          <small>O Descobridor dos Sete Mares</small>
+          <span>4:25</span>
+        </li>
+        <li onclick="loadMusic(3)">
+          <strong>Não Quero Dinheiro (Só Quero Amar)</strong><br>
+          <small>Viva Tim Maia!</small>
+          <span>2:47</span>
+        </li>
+        <li onclick="loadMusic(4)">
+          <strong>Ela Partiu</strong><br>
+          <small>The Existential Soul of Tim Maia</small>
+          <span>4:15</span>
+        </li>
+        <li onclick="loadMusic(5)">
+          <strong>Eu Amo Você</strong><br>
+          <small>Tim Maia</small>
+          <span>4:03</span>
+        </li>
+          <li onclick="loadMusic(6)">
+          <strong>Que Beleza</strong><br>
+          <small>The Existential Soul of Tim Maia</small>
+          <span>3:28</span>
+        </li>
+          <li onclick="loadMusic(7)">
+          <strong>Gostava Tanto De Você</strong><br>
+          <small>Tim Maia</small>
+          <span>4:16</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <audio id="audio" src="musicasmpb/Tim Maia –  Azul Da Cor Do Mar.mp3"></audio>
+  <audio id="audio" src="musicasmpb/Tim Maia –  Me Dê Motivo.mp3"></audio>
+  <audio id="audio" src="musicasmpb/Tim Maia –  O Descobridor Dos Sete Mares.mp3"></audio>
+  <audio id="audio" src="musicasmpb/Tim Maia - Não Quero Dinheiro (Só Quero Amar).mp3"></audio>
+  <audio id="audio" src="musicasmpb/Tim Maia – Ela Partiu (Official Audio).mp3"></audio>
+  <audio id="audio" src="musicasmpb/Tim Maia –  Eu Amo Você.mp3"></audio>
+  <audio id="audio" src="musicasmpb/Tim Maia – Que Beleza (Official Audio).mp3"></audio>
+  <audio id="audio" src="musicasmpb/Tim Maia –  Gostava Tanto De Você.mp3"></audio>
+</main>
+
+<script>
+const musicList = [
+  {
+    title: "Azul Da Cor Do Mar",
+    file: "musicasmpb/Tim Maia –  Azul Da Cor Do Mar.mp3",
+    duration: "3:18"
+  },
+  {
+    title: "Me Dê Motivo",
+    file: "musicasmpb/Tim Maia –  Me Dê Motivo.mp3",
+    duration: "5:35"
+  },
+  {
+    title: "O Descobridor Dos Sete Mares",
+    file: "musicasmpb/Tim Maia –  O Descobridor Dos Sete Mares.mp3",
+    duration: "4:25"
+  },
+  {
+    title: "Não Quero Dinheiro",
+    file: "musicasmpb/Tim Maia - Não Quero Dinheiro (Só Quero Amar).mp3",
+    duration: "2:47"
+  },
+  {
+    title: "Ela Partiu",
+    file: "musicasmpb/Tim Maia – Ela Partiu (Official Audio).mp3",
+    duration: "4:15"
+  },
+  {
+    title: "Eu Amo Você",
+    file: "musicasmpb/Tim Maia –  Eu Amo Você.mp3",
+    duration: "4:03"
+  },
+  {
+    title: "Que Beleza",
+    file: "musicasmpb/Tim Maia – Que Beleza (Official Audio).mp3",
+    duration: "3:28"
+  },
+  {
+    title: "Gostava Tanto De Você",
+    file: "musicasmpb/Tim Maia –  Gostava Tanto De Você.mp3",
+    duration: "4:16"
+  }
+];
+
+let currentMusic = 0;
+const audio = document.getElementById("audio");
+const title = document.getElementById("music-title");
+const progress = document.getElementById("progress");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+
+// Carrega a música pelo índice
+function loadMusic(index) {
+  currentMusic = index;
+  audio.src = musicList[index].file;
+  title.innerHTML = `<strong>${musicList[index].title}</strong>`;
+  durationEl.textContent = musicList[index].duration;
+  playMusic();
+}
+
+// Botões
+function playMusic() {
+  audio.play();
+}
+function pauseMusic() {
+  audio.pause();
+}
+function prevMusic() {
+  currentMusic = (currentMusic - 1 + musicList.length) % musicList.length;
+  loadMusic(currentMusic);
+}
+function nextMusic() {
+  currentMusic = (currentMusic + 1) % musicList.length;
+  loadMusic(currentMusic);
+}
+
+// Atualiza barra de progresso e tempo
+audio.addEventListener("timeupdate", () => {
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progress.value = progressPercent || 0;
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+
+// Permite clicar na barra de progresso
+progress.addEventListener("input", () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+});
+
+// Formata tempo mm:ss
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
+// Iniciar com a primeira música carregada
+window.onload = () => {
+  loadMusic(0);
+};
+</script>
+    
+</body>
+</html>

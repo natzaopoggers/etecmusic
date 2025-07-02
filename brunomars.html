@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Mars</title>
+    <link rel="stylesheet" href="musica.css">
+</head>
+
+<body>
+   	<input type="checkbox" id="bt_menu">
+    <label for="bt_menu">&#9776;</label>
+    <nav class="menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="index.html">Categorias</a>
+			<ul>
+				<li><a href="sertanejo.html">Sertanejo</a></li>
+				<li><a href="pop.html">Pop</a></li>
+				<li><a href="rock.html">Rock</a></li>
+                <li><a href="mpb.html">MPB</a></li>
+                <li><a href="trap.html">Trap</a></li>
+                <li><a href="pagode.html">Pagode</a></li>
+                <li><a href="reagge.html">Reagge</a></li>
+                <li><a href="eletronica.html">Eletrônica</a></li>
+			</ul>
+		  </li>
+          <li><a href="#">Contato</a></li>
+		</ul>
+	</nav>
+
+  <main class="content">
+    <h1>Bruno Mars</h1>
+    <h1>Escute as melhores músicas!</h1>
+  </main>
+
+       <main class="content">
+  <div class="player-container">
+    <div class="player-left">
+      <img src="brunomars.jpeg" alt="Imagem da música" id="cover" class="cover-img">
+      <p id="music-title"><strong>Bruno Mars</strong></p>
+
+      <div class="controls">
+        <button onclick="prevMusic()">⏮</button>
+        <button onclick="playMusic()">▶</button>
+        <button onclick="pauseMusic()">⏸</button>
+        <button onclick="nextMusic()">⏭</button>
+      </div>
+
+      <input type="range" id="progress" value="0" max="100">
+      <div class="time-info">
+        <span id="current-time">0:00</span>
+        <span id="duration">5:00</span>
+      </div>
+    </div>
+
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul id="playlist">
+        <li onclick="loadMusic(0)">
+          <strong>Talking To The Moon</strong><br>
+          <small>Talking To The Moon</small>
+          <span>3:34</span>
+        </li>
+        <li onclick="loadMusic(1)">
+          <strong>Locked Out Of Heaven</strong><br>
+          <small>Unorthodox Jukebox</small>
+          <span>3:54</span>
+        </li>
+        <li onclick="loadMusic(2)">
+          <strong>Just The Way You Are</strong><br>
+          <small>Just The Way You Are</small>
+          <span>3:46</span>
+        </li>
+        <li onclick="loadMusic(3)">
+          <strong>When I Was Your Man</strong><br>
+          <small>When I Was Your Man</small>
+          <span>3:54</span>
+        </li>
+        <li onclick="loadMusic(4)">
+          <strong>Uptown Funk</strong><br>
+          <small>Uptown Funk</small>
+          <span>4:30</span>
+        </li>
+        <li onclick="loadMusic(5)">
+          <strong>The Lazy Song</strong><br>
+          <small>The Lazy Song</small>
+          <span>3:19</span>
+        </li>
+          <li onclick="loadMusic(6)">
+          <strong>APT.</strong><br>
+          <small>APT.</small>
+          <span>2:53</span>
+        </li>
+          <li onclick="loadMusic(7)">
+          <strong>Die With A Smile</strong><br>
+          <small>Die With A Smile</small>
+          <span>4:12</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <audio id="audio" src="musicasspop/Bruno Mars - Talking To The Moon (Official Lyric Video).mp3"></audio>
+  <audio id="audio" src="musicasspop/Bruno Mars - Locked Out Of Heaven (Official Music Video).mp3"></audio>
+  <audio id="audio" src="musicasspop/Bruno Mars - Just The Way You Are (Official Music Video).mp3"></audio>
+  <audio id="audio" src="musicasspop/Bruno Mars - When I Was Your Man (Official Music Video).mp3"></audio>
+  <audio id="audio" src="musicasspop/Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars.mp3"></audio>
+  <audio id="audio" src="musicasspop/Bruno Mars - The Lazy Song (Official Music Video).mp3"></audio>
+  <audio id="audio" src="musicasspop/ROSÉ & Bruno Mars - APT. (Official Music Video).mp3"></audio>
+  <audio id="audio" src="musicasspop/Lady Gaga, Bruno Mars - Die With A Smile (Official Music Video).mp3"></audio>
+</main>
+
+<script>
+const musicList = [
+  {
+    title: "Talking To The Moon",
+    file: "musicasspop/Bruno Mars - Talking To The Moon (Official Lyric Video).mp3",
+    duration: "3:34"
+  },
+  {
+    title: "Locked Out Of Heaven",
+    file: "musicasspop/Bruno Mars - Locked Out Of Heaven (Official Music Video).mp3",
+    duration: "3:54"
+  },
+  {
+    title: "Just The Way You Are",
+    file: "musicasspop/Bruno Mars - Just The Way You Are (Official Music Video).mp3",
+    duration: "3:46"
+  },
+  {
+    title: "When I Was Your Man",
+    file: "musicasspop/Bruno Mars - When I Was Your Man (Official Music Video).mp3",
+    duration: "3:54"
+  },
+  {
+    title: "Uptown Funk",
+    file: "musicasspop/Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars.mp3",
+    duration: "4:30"
+  },
+  {
+    title: "The Lazy Song",
+    file: "musicasspop/Bruno Mars - The Lazy Song (Official Music Video).mp3",
+    duration: "3:19"
+  },
+  {
+    title: "APT.",
+    file: "musicasspop/ROSÉ & Bruno Mars - APT. (Official Music Video).mp3",
+    duration: "2:53"
+  },
+  {
+    title: "Die With A Smile",
+    file: "musicasspop/Lady Gaga, Bruno Mars - Die With A Smile (Official Music Video).mp3",
+    duration: "4:12"
+  }
+];
+
+let currentMusic = 0;
+const audio = document.getElementById("audio");
+const title = document.getElementById("music-title");
+const progress = document.getElementById("progress");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+
+// Carrega a música pelo índice
+function loadMusic(index) {
+  currentMusic = index;
+  audio.src = musicList[index].file;
+  title.innerHTML = `<strong>${musicList[index].title}</strong>`;
+  durationEl.textContent = musicList[index].duration;
+  playMusic();
+}
+
+// Botões
+function playMusic() {
+  audio.play();
+}
+function pauseMusic() {
+  audio.pause();
+}
+function prevMusic() {
+  currentMusic = (currentMusic - 1 + musicList.length) % musicList.length;
+  loadMusic(currentMusic);
+}
+function nextMusic() {
+  currentMusic = (currentMusic + 1) % musicList.length;
+  loadMusic(currentMusic);
+}
+
+// Atualiza barra de progresso e tempo
+audio.addEventListener("timeupdate", () => {
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progress.value = progressPercent || 0;
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+
+// Permite clicar na barra de progresso
+progress.addEventListener("input", () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+});
+
+// Formata tempo mm:ss
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
+// Iniciar com a primeira música carregada
+window.onload = () => {
+  loadMusic(0);
+};
+</script>
+    
+    
+</body>
+</html>

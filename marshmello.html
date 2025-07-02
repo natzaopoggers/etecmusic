@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marshmello</title>
+    <link rel="stylesheet" href="musica.css">
+</head>
+
+<body>
+    <input type="checkbox" id="bt_menu">
+    <label for="bt_menu">&#9776;</label>
+    <nav class="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html">Categorias</a>
+      <ul>
+        <li><a href="sertanejo.html">Sertanejo</a></li>
+        <li><a href="pop.html">Pop</a></li>
+        <li><a href="rock.html">Rock</a></li>
+                <li><a href="mpb.html">MPB</a></li>
+                <li><a href="trap.html">Trap</a></li>
+                <li><a href="pagode.html">Pagode</a></li>
+                <li><a href="reagge.html">Reagge</a></li>
+                <li><a href="eletronica.html">Eletrônica</a></li>
+      </ul>
+      </li>
+            <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <h1>Marshmello</h1>
+    <h3>Escute as melhores músicas!</h3>
+  </main>
+
+            <main class="content">
+  <div class="player-container">
+    <div class="player-left">
+      <img src="djmarshmello.jpg" alt="Imagem da música" id="cover" class="cover-img">
+      <p id="music-title"><strong>Marshmello</strong></p>
+
+      <div class="controls">
+        <button onclick="prevMusic()">⏮</button>
+        <button onclick="playMusic()">▶</button>
+        <button onclick="pauseMusic()">⏸</button>
+        <button onclick="nextMusic()">⏭</button>
+      </div>
+
+      <input type="range" id="progress" value="0" max="100">
+      <div class="time-info">
+        <span id="current-time">0:00</span>
+        <span id="duration">5:00</span>
+      </div>
+    </div>
+
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul id="playlist">
+        <li onclick="loadMusic(0)">
+          <strong>Here With Me</strong><br>
+          <small>Marshmello</small>
+          <span>02:34</span>
+        </li>
+        <li onclick="loadMusic(1)">
+          <strong>Juice WRLD</strong><br>
+          <small>Marshmello</small>
+          <span>03:21</span>
+        </li>
+        <li onclick="loadMusic(2)">
+          <strong>Keep it Mello</strong><br>
+          <small>Marshmello</small>
+          <span>03:10</span>
+        </li>
+        <li onclick="loadMusic(3)">
+          <strong>Wolves</strong><br>
+          <small>Marshmello</small>
+          <span>03:18</span>
+        </li>
+        <li onclick="loadMusic(4)">
+          <strong>Silence</strong><br>
+          <small>Marshmello ft. Khalid</small>
+          <span>03:06</span>
+        </li>
+        <li onclick="loadMusic(5)">
+          <strong>FRIENDS</strong><br>
+          <small>Marshmello &amp; Anne-Marie</small>
+          <span>03:25</span>
+        </li>
+          <li onclick="loadMusic(6)">
+          <strong>Happier</strong><br>
+          <small>Marshmello ft. Bastille</small>
+          <span>03:38</span>
+        </li>
+          <li onclick="loadMusic(7)">
+          <strong>Alone</strong><br>
+          <small>Marshmello</small>
+          <span>03:19</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <audio id="audio" src=""></audio>
+  <audio id="audio" src="musicaseletronica/"></audio>
+  <audio id="audio" src="musicaseletronica/"></audio>
+  <audio id="audio" src="musicaseletronica/"></audio>
+  <audio id="audio" src="musicaseletronica/"></audio>
+  <audio id="audio" src="musicaseletronica/"></audio>
+  <audio id="audio" src="musicaseletronica/"></audio>
+  <audio id="audio" src="musicaseletronica/"></audio>
+</main>
+
+<script>
+const musicList = [
+  {
+    title: "Here With Me",
+    file: "musicaseletronica/Marshmello - Here With Me Feat. CHVRCHES [Alternative Music Video].mp3",
+    duration: "02:34"
+  },
+  {
+    title: "Juice WRLD",
+    file: "musicaseletronica/Marshmello - Juice WRLD &  - Come & Go (Lyrics).mp3",
+    duration: "03:21"
+  },
+  {
+    title: "Keep it Mello",
+    file: "musicaseletronica/Marshmello - Keep it Mello ft. Omar LinX (Official Music Video).mp3",
+    duration: "03:10"
+  },
+  {
+    title: "Wolves",
+    file: "musicaseletronica/Marshmello - Selena Gomez, Marshmello - Wolves (Audio Official).mp3",
+    duration: "03:18"
+  },
+  {
+    title: "Silence",
+    file: "musicaseletronica/Marshmello ft. Khalid - Silence (Official Lyric Video).mp3",
+    duration: "03:06"
+  },
+  {
+    title: "FRIENDS",
+    file: "musicaseletronica/Marshmello & Anne-Marie - FRIENDS (Lyric Video).mp3",
+    duration: "03:25"
+  },
+  {
+    title: "Happier",
+    file: "musicaseletronica/Marshmello ft. Bastille - Happier (Official Lyric Video).mp3",
+    duration: "03:38"
+  },
+  {
+    title: "Alone",
+    file: "musicaseletronica/Marshmello - Alone (Official Music Video).mp3",
+    duration: "03:19"
+  }
+];
+
+let currentMusic = 0;
+const audio = document.getElementById("audio");
+const title = document.getElementById("music-title");
+const cover = document.getElementById("cover");
+const progress = document.getElementById("progress");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+
+// Carrega a música pelo índice
+function loadMusic(index) {
+  currentMusic = index;
+  audio.src = musicList[index].file;
+  title.innerHTML = `<strong>${musicList[index].title}</strong>`;
+  durationEl.textContent = musicList[index].duration;
+  playMusic();
+}
+
+// Botões
+function playMusic() {
+  audio.play();
+}
+function pauseMusic() {
+  audio.pause();
+}
+function prevMusic() {
+  currentMusic = (currentMusic - 1 + musicList.length) % musicList.length;
+  loadMusic(currentMusic);
+}
+function nextMusic() {
+  currentMusic = (currentMusic + 1) % musicList.length;
+  loadMusic(currentMusic);
+}
+
+// Atualiza barra de progresso e tempo
+audio.addEventListener("timeupdate", () => {
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progress.value = progressPercent || 0;
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+
+// Permite clicar na barra de progresso
+progress.addEventListener("input", () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+});
+
+// Formata tempo mm:ss
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
+// Iniciar com a primeira música carregada
+window.onload = () => {
+  loadMusic(0);
+};
+</script>
+
+</body>
+</html>

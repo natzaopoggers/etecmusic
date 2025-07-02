@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipe Ret</title>
+    <link rel="stylesheet" href="musica.css">
+</head>
+
+<body>
+   	<input type="checkbox" id="bt_menu">
+    <label for="bt_menu">&#9776;</label>
+    <nav class="menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="index.html">Categorias</a>
+			<ul>
+				<li><a href="sertanejo.html">Sertanejo</a></li>
+				<li><a href="pop.html">Pop</a></li>
+				<li><a href="rock.html">Rock</a></li>
+                <li><a href="mpb.html">MPB</a></li>
+                <li><a href="trap.html">Trap</a></li>
+                <li><a href="pagode.html">Pagode</a></li>
+                <li><a href="reagge.html">Reagge</a></li>
+                <li><a href="eletronica.html">Eletrônica</a></li>
+			</ul>
+		  </li>
+          <li><a href="#">Contato</a></li>
+		</ul>
+	</nav>
+
+  <main class="content">
+    <h1>Filipe Ret</h1>
+    <h3>Escute as melhores músicas!</h3>
+  </main>
+
+         <main class="content">
+  <div class="player-container">
+    <div class="player-left">
+      <img src="feliperet.jpg" alt="Imagem da música" id="cover" class="cover-img">
+      <p id="music-title"><strong>Filipe Ret</strong></p>
+
+      <div class="controls">
+        <button onclick="prevMusic()">⏮</button>
+        <button onclick="playMusic()">▶</button>
+        <button onclick="pauseMusic()">⏸</button>
+        <button onclick="nextMusic()">⏭</button>
+      </div>
+
+      <input type="range" id="progress" value="0" max="100">
+      <div class="time-info">
+        <span id="current-time">0:00</span>
+        <span id="duration">5:00</span>
+      </div>
+    </div>
+
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul id="playlist">
+        <li onclick="loadMusic(0)">
+          <strong>Acima de Mim Só Deus</strong><br>
+          <small></small>
+          <span>2:31</span>
+        </li>
+        <li onclick="loadMusic(1)">
+          <strong>Quero Paz</strong><br>
+          <small></small>
+          <span>2:29</span>
+        </li>
+        <li onclick="loadMusic(2)">
+          <strong>ILUSÃO</strong><br>
+          <small></small>
+          <span>3:28</span>
+        </li>
+        <li onclick="loadMusic(3)">
+          <strong>F_F_M_</strong><br>
+          <small></small>
+          <span>3:22</span>
+        </li>
+        <li onclick="loadMusic(4)">
+          <strong>Faça Você Mesmo</strong><br>
+          <small></small>
+          <span>3:47</span>
+        </li>
+        <li onclick="loadMusic(5)">
+          <strong>Isso Que é Vida</strong><br>
+          <small></small>
+          <span>5:00</span>
+        </li>
+          <li onclick="loadMusic(6)">
+          <strong>Melhor Agora</strong><br>
+          <small></small>
+          <span>2:03</span>
+        </li>
+          <li onclick="loadMusic(7)">
+          <strong>Da Onde Eu Venho</strong><br>
+          <small></small>
+          <span>2:21</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <audio id="audio" src="musicastrap/Filipe Ret - Acima de Mim Só Deus☝🏽(Clipe Oficial).mp3"></audio>
+  <audio id="audio" src="musicastrap/Filipe Ret - Quero Paz (Clipe Oficial) 👩🏼‍❤️‍👨🏽.mp3"></audio>
+  <audio id="audio" src="musicastrap/Filipe Ret _ILUSÃO_ ⏳ (pd. Dallass).mp3"></audio>
+  <audio id="audio" src="musicastrap/Filipe Ret - F_F_M_.mp3"></audio>
+  <audio id="audio" src="musicastrap/Filipe Ret - Faça Você Mesmo (Prod. Dallass e Mãolee).mp3"></audio>
+  <audio id="audio" src="musicastrap/Filipe Ret - Isso Que é Vida (prod. Reeo Mix e Mãolee).mp3"></audio>
+  <audio id="audio" src="musicastrap/Filipe Ret ✦ Melhor Agora (Prod. Dallass_Honaiser_LODONI).mp3"></audio>
+  <audio id="audio" src="musicastrap/Filipe Ret - Da Onde Eu Venho.mp3"></audio>
+</main>
+
+<script>
+const musicList = [
+  {
+    title: "Acima de Mim Só Deus",
+    file: "musicastrap/Filipe Ret - Acima de Mim Só Deus☝🏽(Clipe Oficial).mp3",
+    duration: "2:31"
+  },
+  {
+    title: "Quero Paz",
+    file: "musicastrap/Filipe Ret - Quero Paz (Clipe Oficial) 👩🏼‍❤️‍👨🏽.mp3",
+    duration: "2:29"
+  },
+  {
+    title: "ILUSÃO",
+    file: "musicastrap/Filipe Ret _ILUSÃO_ ⏳ (pd. Dallass).mp3",
+    duration: "3:28"
+  },
+  {
+    title: "F_F_M_",
+    file: "musicastrap/Filipe Ret - F_F_M_.mp3",
+    duration: "3:22"
+  },
+  {
+    title: "Faça Você Mesmo",
+    file: "musicastrap/Filipe Ret - Faça Você Mesmo (Prod. Dallass e Mãolee).mp3",
+    duration: "3:47"
+  },
+  {
+    title: "Isso Que é Vida",
+    file: "musicastrap/Filipe Ret - Isso Que é Vida (prod. Reeo Mix e Mãolee).mp3",
+    duration: "5:00"
+  },
+  {
+    title: "Melhor Agora",
+    file: "musicastrap/Filipe Ret ✦ Melhor Agora (Prod. Dallass_Honaiser_LODONI).mp3",
+    duration: "2:03"
+  },
+  {
+    title: "Da Onde Eu Venho",
+    file: "musicastrap/Filipe Ret - Da Onde Eu Venho.mp3",
+    duration: "2:21"
+  }
+];
+
+let currentMusic = 0;
+const audio = document.getElementById("audio");
+const title = document.getElementById("music-title");
+const progress = document.getElementById("progress");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+
+// Carrega a música pelo índice
+function loadMusic(index) {
+  currentMusic = index;
+  audio.src = musicList[index].file;
+  title.innerHTML = `<strong>${musicList[index].title}</strong>`;
+  durationEl.textContent = musicList[index].duration;
+  playMusic();
+}
+
+// Botões
+function playMusic() {
+  audio.play();
+}
+function pauseMusic() {
+  audio.pause();
+}
+function prevMusic() {
+  currentMusic = (currentMusic - 1 + musicList.length) % musicList.length;
+  loadMusic(currentMusic);
+}
+function nextMusic() {
+  currentMusic = (currentMusic + 1) % musicList.length;
+  loadMusic(currentMusic);
+}
+
+// Atualiza barra de progresso e tempo
+audio.addEventListener("timeupdate", () => {
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progress.value = progressPercent || 0;
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+
+// Permite clicar na barra de progresso
+progress.addEventListener("input", () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+});
+
+// Formata tempo mm:ss
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
+// Iniciar com a primeira música carregada
+window.onload = () => {
+  loadMusic(0);
+};
+</script>
+    
+</body>
+</html>

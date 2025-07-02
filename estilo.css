@@ -1,0 +1,217 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box; /*faz com que o padding não some à largura*/
+}
+
+/*Estilos gerais do corpo da página*/
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #111; /*fundo preto escuro*/
+	color: #eee; /*texto claro para contraste*/
+	line-height: 1.6; /*espaçamento entre linhas*/
+}
+
+/*MENU RESPONSIVO*/
+/*esconde o checkbox que controla o menu mobile*/
+#bt_menu {
+	display: none;
+}
+
+/*Estilo do botão do menu hamburguer (aparece em mobile)*/
+label[for="bt_menu"] {
+	display: none; /*inicialmente escondido*/
+	padding: 10px;
+	background-color: #000;
+	color: white;
+	font-size: 24px;
+	cursor: pointer; /*Cursor de clique*/
+	text-align: center;
+}
+
+
+/*container principal do menu*/
+.menu {
+	background-color: #000; /*preto puro*/
+	width: 100%;
+}
+
+/*Lista não ordenada do menu*/
+.menu ul {
+	list-style: none; /*remove marcadores de lista*/
+	margin: 0;
+	padding: 0;
+	display: flex; /*Layout Flexível*/
+}
+
+/*Itens do menu principal*/
+.menu > ul > li {
+	position: relative;
+}
+
+.menu > ul > li > a {
+	display: block;
+	padding: 15px 20px;
+	color: #dfff40;
+	text-decoration: none;
+	font-weight: bold;
+	transition: 0.3s; /*transição suave*/
+}
+
+/*efeito hover nos links do menu*/
+.menu > ul > li > a:hover {
+    /*background-color: #c1b72f38; /* cor do brilhinho quando o mouse passa por cima */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #dfff40;
+    text-shadow: 0 0 10px #dfff40;
+
+}
+
+/*submenus (dropdown)*/
+.menu ul ul {
+	display: none; /*esconde por padrão*/
+	position: absolute;
+	top: 100%; /*Posiciona abaixo do item pai*/
+	left: 0;
+	background-color: #222;
+	min-width: 200px;
+	z-index: 1000; /*garante que fique acima de outros elementos*/
+}
+
+.menu ul ul li {
+	border-bottom: 1px solid #333; /*divisória*/
+}
+
+.menu ul ul li a {
+	padding: 12px 20px;
+	color: white;
+	display: block;
+}
+
+.menu > ul > li:hover > ul {
+	display: block;
+}
+
+
+/*CONTEÚDO PRINCIPAL*/
+.content {
+	padding: 20px;
+	max-width: 1200px;
+	margin: 20px auto;
+	background-color: #222;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /*sombra mais escura*/
+}
+
+/*título principal*/
+.content h1 {
+	text-align: center;
+	margin-bottom: 30px;
+	color: #dfff40;
+	padding-top: 20px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /*sombra de texto*/
+}
+
+.boxes-container {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr); /*4 colunas*/
+	gap: 20px; /*espaço entre os itens*/
+	width: 100%;
+	padding: 20px;
+}
+
+.product-box {
+	background: #333;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(52, 54, 28, 0.299); /*sombra*/
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /*animações suaves*/
+	border: 1px solid #444;
+}
+
+/*efeito hover*/
+.product-box:hover {
+	transform: translateY(-5px); /*Levanta levemente*/
+	box-shadow: 0 5px 15px rgba(239, 227, 58, 0.405); /*sombra mais intensa*/
+}
+
+/*imagem*/
+.product-box img {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 180px;
+	object-fit: cover; /*mantém a proporção cobrindo o espaço*/
+	border-bottom: 1px solid #00000038; /*divisória*/
+}
+
+/*Título*/
+.product-box h3 {
+	padding: 15px 15px 5px;
+	color: #fbff28;
+	font-size: 1.2rem;
+}
+
+.product-box p {
+	padding: 0 15px;
+	color: #b1b9213d;
+	font-size: 0.9rem;
+	margin-bottom: 15px;
+	min-height: 60px;
+}
+
+
+
+/*RESPONSIVIDADE*/
+/*telas até 1024px (notebooks menores)*/
+@media (max-width: 1024px) {
+	.boxes-container {
+		grid-template-columns: repeat(3, 1fr); /*3 colunas*/
+	}
+	.product-box img {
+		height: 220px;
+	}
+}
+
+
+
+/*telas até 768px (tablets)*/
+@media (max-width: 768px) {
+	/* Mostra o botão do menu mobile */
+	label[for="bt_menu"] {
+		display: block;
+	}
+
+	/* altera o menu para versão mobile */
+	.menu ul {
+		display: none;
+		flex-direction: column;
+	}
+
+	/*Mostra o menu quando o checkbox está marcado*/
+	#bt_menu:checked ~ .menu ul {
+		display: flex;
+	}
+
+	/*Ajusta submenus para mobile*/
+	.menu ul ul {
+		position: static;
+		width: 100%;
+	}
+
+	/* 2 colunas para tablets */
+	.boxes-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/*telas até 480px (celulares)*/
+@media (max-width: 480px) {
+	.boxes-container {
+		grid-template-columns: 1fr; /*1 coluna*/
+	}
+	.product-box img {
+		height: 220px;
+	}
+}

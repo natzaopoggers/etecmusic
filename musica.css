@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #111;
+    color: #eee;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Menu */
+#bt_menu {
+    display: none;
+}
+
+label[for="bt_menu"] {
+    display: none;
+    padding: 10px;
+    background-color: #000;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.menu {
+    background-color: #000;
+    width: 100%;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.menu > ul > li {
+    position: relative;
+}
+
+.menu > ul > li > a {
+    display: block;
+    padding: 15px 20px;
+    color: #dfff40;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.menu > ul > li > a:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    color: #dfff40;
+    text-shadow: 0 0 10px #dfff40;
+}
+
+.menu ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #222;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.menu ul ul li {
+    border-bottom: 1px solid #333;
+}
+
+.menu ul ul li a {
+    padding: 12px 20px;
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+
+.menu > ul > li:hover > ul {
+    display: block;
+}
+
+/* Player principal */
+.player-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 40px;
+    background-color: #111;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.player-left {
+    text-align: center;
+    max-width: 300px;
+}
+
+/* Corrected .cover-img styling for full coverage without distortion */
+.cover-img {
+    width: 100%; /* Occupy 100% of its parent's width */
+    max-width: 250px; /* Max width to ensure it doesn't get too large */
+    height: 250px; /* Fixed height for the image container */
+    object-fit: cover; /* This is key: it scales the image to fill the content box, preserving aspect ratio and potentially cropping */
+    border-radius: 12px;
+    margin: auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+#music-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.controls button {
+    font-size: 20px;
+    margin: 10px 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 50%;
+    background-color: #dfff40;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.controls button:hover {
+    transform: scale(1.1);
+}
+
+#progress {
+    width: 100%;
+    margin-top: 15px;
+    appearance: none;
+    height: 5px;
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Playlist */
+.playlist {
+    background-color: #1b1b1b;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.playlist h2 {
+    margin-bottom: 15px;
+    color: #dfff40;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.playlist li {
+    background-color: #333;
+    color: white;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    flex-wrap: wrap;
+}
+
+.playlist li:hover {
+    background-color: #e9ff7dc9;
+    color: black;
+}
+
+.playlist li span {
+    font-weight: bold;
+}
+
+.playlist li strong {
+    display: block;
+    font-size: 1rem;
+}
+
+.playlist li small {
+    color: #ccc;
+    font-size: 0.8rem;
+}
+
+/* Música ativa */
+.playlist li.active {
+    background-color: #1db954;
+    color: #000;
+}
+
+.content h1 {
+    font-size: 2.5rem;
+    color: #c1b72f;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.content h3 {
+    color: #c1b72f;
+    text-align: center;
+    margin-bottom: 10px;
+}
